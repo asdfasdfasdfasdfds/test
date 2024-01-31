@@ -21,7 +21,6 @@ import KartListe from "./pages/Yonetici/KartListe";
 import Validator from "./pages/Yonetici/Validator";
 import Rapor from "./pages/Yonetici/Rapor";
 import YPanel from "./pages/Yemekhane/Panel";
-import Test from "./pages/Test";
 
 function App() {
   return (
@@ -55,7 +54,6 @@ function App() {
           </Route>
           <Route path="/kart/:no" element={<KartDetay />} />
           <Route path="*" element={<Bulunamadi />} />
-          <Route path="/test" element={<Test />} />
         </Routes>
       </BrowserRouter>
     </>

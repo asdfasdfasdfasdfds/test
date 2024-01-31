@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import logo from "../img/battalkart.jpg";
 import { sifreCoz, veriSifrele } from "../services/sifreIslem";
 import { getCookieValue } from "../services/cookieIslemler";
+import bg from "../img/bg.png";
 
 const Login = () => {
   const [hataliToken, setHataliToken] = useState(false);

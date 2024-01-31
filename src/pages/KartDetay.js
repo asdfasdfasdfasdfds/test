@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { firestore } from "../firebase";
 import logo from "../img/battalkart.jpg";
+import bg from "../img/bg.jpg";
 
 const KartDetay = () => {
   const { no } = useParams();
@@ -33,32 +34,51 @@ const KartDetay = () => {
     <div className=" bg-white flex flex-col items-center justify-center">
       <img src={logo} className="w-48 mx-auto mt-10" />
       <div className="w-96 mt-5 md:bg-slate-50 bg-white md:border rounded-md md:shadow-lg">
-        <div className="ml-4 mt-2">
-          <p>
-            <span className="font-semibold text-lg">{no}</span> Numaralı kartın
-            bilgileri:
-          </p>
-        </div>
         {kartDetay == null && (
           <div className="ml-4 m-2">
             <p className="font-extrabold ">Kart bilgisi getirilemedi.</p>
           </div>
         )}
         {kartDetay && (
-          <div className="ml-4 m-2">
-            <p className="text-lg">
-              Kart No: <span className="font-semibold">{no}</span>
-            </p>
-            <p className="text-lg">
-              Aktif Bakiye:{" "}
-              <span className="font-semibold">{kartDetay.aktifBakiye}</span> TL
-            </p>
-            <p className="text-lg">
-              Ad: <span className="font-semibold">{kartDetay.isim}</span>
-            </p>
-            <p className="text-lg">
-              Yetki: <span className="font-semibold">{kartDetay.yetki}</span>
-            </p>
+          <div className="flex justify-center">
+            <div className="w-96 h-56 m-auto rounded-xl text-white shadow-2xl transition-transform transform hover:scale-105">
+              <img
+                className="relative object-cover w-full h-full rounded-xl"
+                src={bg}
+              />
+              <div className="w-full px-8 absolute top-8">
+                <div className="flex justify-between">
+                  <div>
+                    <p className="font-light">AD</p>
+                    <p className="font-medium tracking-widest">
+                      {kartDetay.isim}
+                    </p>
+                  </div>
+                </div>
+                <div className="pt-1">
+                  <p className="font-light">KART NO</p>
+                  <p className="font-medium tracking-more-wider">
+                    {kartDetay.kartNo}
+                  </p>
+                </div>
+                <div className="pt-6 pr-6">
+                  <div className="flex justify-between">
+                    <div className="">
+                      <p className="font-light text-xs">BAKİYE</p>
+                      <p className="font-medium tracking-wider text-sm">
+                        {kartDetay.aktifBakiye} TL
+                      </p>
+                    </div>
+                    <div className="">
+                      <p className="font-light text-xs">YETKİ</p>
+                      <p className="font-bold tracking-more-wider text-sm">
+                        {kartDetay.yetki.toUpperCase()}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         )}
       </div>

@@ -175,9 +175,9 @@ const Dashboard = () => {
 
   return (
     <div>
-      <img src={logo} className="mx-auto w-64 lg:w-96" />
-      <div className="flex flex-col h-max p-5 m-3 rounded-md">
-        <p className="text-center mb-3 text-2xl mt-1 font-extrabold text-gray-800">
+      <img src={logo} className="mx-auto w-64 lg:w-96 md:mt-10 mt-0" />
+      <div className="flex flex-col h-max p-4 rounded-md">
+        <p className="text-center mb-4 text-2xl mt-1 font-extrabold text-gray-800">
           Merhaba, {isim}
         </p>
         <div className="flex flex-col lg:flex-row gap-2 justify-center">

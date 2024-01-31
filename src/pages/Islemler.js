@@ -68,7 +68,7 @@ const Islemler = () => {
         {islemler.map((isleml, index) => (
           <li
             key={index}
-            className={`p-4 rounded-lg shadow-md ${
+            className={`p-4 hover:scale-105 rounded-lg shadow-md ${
               isleml.islemTuru === "Bakiye Yüklendi"
                 ? "border border-l-8 border-green-400"
                 : isleml.islemTuru === "Qr ile Ödeme"
