@@ -21,6 +21,7 @@ import KartListe from "./pages/Yonetici/KartListe";
 import Validator from "./pages/Yonetici/Validator";
 import Rapor from "./pages/Yonetici/Rapor";
 import YPanel from "./pages/Yemekhane/Panel";
+import USBToken from "./services/USBToken";
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
             </Route>
           </Route>
           <Route path="/kart/:no" element={<KartDetay />} />
+          <Route path="/token/:token" element={<USBToken />} />
           <Route path="*" element={<Bulunamadi />} />
         </Routes>
       </BrowserRouter>
