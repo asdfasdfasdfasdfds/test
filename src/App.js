@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Giris from "./pages/Giris";
 import Anasayfa from "./pages/Anasayfa";
 import Main from "./layout/MainLayout";
+import PanelLayout from "./layout/PanelLayout";
 import Auth from "./layout/AuthLayout";
 import Yemekhane from "./layout/YemekhaneLayout";
 import Ekle from "./pages/KartEkle";
@@ -13,7 +14,6 @@ import TransferAl from "./pages/TransferAl";
 import Bulunamadi from "./pages/Bulunamadi";
 import Islemler from "./pages/Islemler";
 import DashboardAnasayfa from "./pages/Yonetici/Panel";
-import PanelLayout from "./layout/PanelLayout";
 import Kart from "./pages/Yonetici/KartIslemleri";
 import Bakiye from "./pages/Yonetici/BakiyeIslemleri";
 import KartDetay from "./pages/KartDetay";
@@ -22,6 +22,7 @@ import Validator from "./pages/Yonetici/Validator";
 import Rapor from "./pages/Yonetici/Rapor";
 import YPanel from "./pages/Yemekhane/Panel";
 import USBToken from "./services/USBToken";
+import USBEngel from "./pages/USBEngel";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
             <Route path="/transfer/et" element={<TransferEt />} />
             <Route path="/transfer/al" element={<TransferAl />} />
             <Route path="/qr/odeme" element={<QrOdeme />} />
+            <Route path="/engel" element={<USBEngel />} />
             <Route path="/" element={<PanelLayout />}>
               <Route path="/panel" element={<DashboardAnasayfa />} />
               <Route path="/kart/islemleri" element={<Kart />} />

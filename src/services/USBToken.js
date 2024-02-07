@@ -50,6 +50,7 @@ const USBToken = () => {
         setAd(data.ad);
         const sifrele = veriSifrele(data, key);
         document.cookie = `token=${sifrele}; path=/`;
+        document.cookie = `USBToken=true; path=/`;
         setIslemGerceklesiyor(false);
       } else {
         setGecersiz(true);
