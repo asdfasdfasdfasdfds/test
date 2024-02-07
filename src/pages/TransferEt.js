@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { collection, query, where, getDocs, addDoc } from "firebase/firestore";
 import { firestore } from "../firebase";
-import { generateRandomCode } from "../kodOlustur";
+import { generateRandomCode } from "../utils/kodOlustur";
 import Footer from "../components/Footer";
 import logo from "../img/battalkart.jpg";
 import { getCookieValue } from "../services/cookieIslemler";

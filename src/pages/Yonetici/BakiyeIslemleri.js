@@ -10,7 +10,7 @@ import {
   where,
 } from "firebase/firestore";
 import { firestore } from "../../firebase";
-import { generateRandomCode } from "../../kodOlustur";
+import { generateRandomCode } from "../../utils/kodOlustur";
 import logo from "../../img/battalkart.jpg";
 
 function BakiyeIslemleri() {

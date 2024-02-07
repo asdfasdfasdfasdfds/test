@@ -4,6 +4,7 @@ import girisLogo from "../img/girislogo.png";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { firestore } from "../firebase";
 import { veriSifrele } from "./sifreIslem";
+import back from "../img/backg.jpg";
 
 const USBToken = () => {
   const { token } = useParams();
@@ -62,8 +63,15 @@ const USBToken = () => {
   };
 
   return (
-    <div className="min-h-screen flex bg-gray-100 flex-col items-center justify-center">
-      <div className="max-w-4xl w-full h-[500px] flex flex-col items-center rounded-md border bg-white">
+    <div
+      className="min-h-screen flex flex-col items-center justify-center"
+      style={{
+        backgroundImage: `url(${back})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <div className="max-w-4xl w-full h-[500px]  flex flex-col items-center rounded-md shadow border-gray-200 border bg-white">
         <img src={girisLogo} className="w-96 mx-auto mt-10" />
         <p className="p-5 text-lg shadow-xl bg-gray-200 max-w-xl text-center font-semibold rounded-md w-full mt-4">
           {token}
@@ -92,7 +100,7 @@ const USBToken = () => {
           </>
         ) : gecersiz ? (
           <>
-            <p className="p-4 bg-red-500 text-3xl w-96 text-center font-bold mt-20 rounded-md">
+            <p className="p-4 bg-red-500 text-black text-3xl w-96 text-center font-bold mt-20 rounded-md">
               TOKEN GEÇERSİZ
             </p>
             <p className="p-4 bg-red-500 w-96 text-center text-xl font-bold mt-5 rounded-md">

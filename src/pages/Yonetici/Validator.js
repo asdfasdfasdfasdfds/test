@@ -16,7 +16,7 @@ import {
   updateDoc,
   where,
 } from "firebase/firestore";
-import { generateRandomCode } from "../../kodOlustur";
+import { generateRandomCode } from "../../utils/kodOlustur";
 import { kartCoz } from "../../services/sifreIslem";
 
 function Validator() {
