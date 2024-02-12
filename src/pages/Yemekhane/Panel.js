@@ -17,6 +17,24 @@ const Panel = () => {
         >
           VALİDATÖR
         </Link>
+        <Link
+          to="/menu-ekle"
+          className="w-72 text-center font-extrabold mb-6 bg-gray-800 text-white py-3 rounded-xl mt-2 hover:bg-gray-600 focus:outline-none focus:ring focus:ring-blue-200"
+        >
+          MENÜ EKLE
+        </Link>
+        <Link
+          to="/menu-takip"
+          className="w-72 text-center font-extrabold mb-6 bg-gray-800 text-white py-3 rounded-xl mt-2 hover:bg-gray-600 focus:outline-none focus:ring focus:ring-blue-200"
+        >
+          MENÜ TAKİP
+        </Link>
+        <Link
+          to="/"
+          className="w-72 text-center font-extrabold mb-6 bg-gray-800 text-white py-3 rounded-xl mt-2 hover:bg-gray-600 focus:outline-none focus:ring focus:ring-blue-200"
+        >
+          ANASAYFA
+        </Link>
       </div>
       <Footer />
     </div>

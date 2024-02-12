@@ -23,6 +23,9 @@ import Rapor from "./pages/Yonetici/Rapor";
 import YPanel from "./pages/Yemekhane/Panel";
 import USBToken from "./services/USBToken";
 import USBEngel from "./pages/USBEngel";
+import UcretIslem from "./pages/Yonetici/UcretIslem";
+import MenuEkle from "./pages/Yemekhane/MenuIslem";
+import MenuTakip from "./pages/Yemekhane/MenuTakip";
 
 function App() {
   return (
@@ -49,10 +52,13 @@ function App() {
               <Route path="/bakiye/islemleri" element={<Bakiye />} />
               <Route path="/validator" element={<Validator />} />
               <Route path="/rapor" element={<Rapor />} />
+              <Route path="/ucret-islem" element={<UcretIslem />} />
             </Route>
             <Route path="/" element={<Yemekhane />}>
               <Route path="/ypanel" element={<YPanel />} />
               <Route path="/yvalidator" element={<Validator />} />
+              <Route path="/menu-ekle" element={<MenuEkle />} />
+              <Route path="/menu-takip" element={<MenuTakip />} />
             </Route>
           </Route>
           <Route path="/kart/:no" element={<KartDetay />} />

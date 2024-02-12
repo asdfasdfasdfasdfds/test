@@ -62,6 +62,12 @@ const Panel = () => {
         >
           VALİDATÖR
         </Link>
+        <Link
+          to="/ucret-islem"
+          className="w-72 text-center font-extrabold mb-6 bg-gray-800 text-white py-3 rounded-xl mt-2 hover:bg-gray-600 focus:outline-none focus:ring focus:ring-blue-200"
+        >
+          ÜCRET İŞLEMLERİ
+        </Link>
         <button
           onClick={handleVeriIndir}
           className="w-72 text-center font-extrabold mb-6 bg-gray-800 text-white py-3 rounded-xl mt-2 hover:bg-gray-600 focus:outline-none focus:ring focus:ring-blue-200"
