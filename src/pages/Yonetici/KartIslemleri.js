@@ -25,6 +25,7 @@ function App() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [kartSifre, setKartSifre] = useState("");
   const [kartNo, setKartNo] = useState("");
+  const [seriNo, setSeriNo] = useState("");
   const [isim, setIsım] = useState("");
   const [bolum, setBolum] = useState("");
   const [ogrenciNo, setOgrenciNo] = useState("");
@@ -37,7 +38,9 @@ function App() {
 
   useEffect(() => {
     const kartNo = kartNoOlustur(6);
+    const seriNo = kartNoOlustur(9);
     setKartNo(kartNo);
+    setSeriNo(seriNo);
   }, [showAddModal]);
 
   const handleChange = (e) => {
@@ -76,6 +79,8 @@ function App() {
         sifre: kartSifre,
         aktifBakiye: 0,
         yetki: selectedRole,
+        no: ogrenciNo,
+        seriNo: "BMTAL" + seriNo,
       };
 
       await addDoc(ref, docData);
@@ -83,15 +88,20 @@ function App() {
       generateCard(isim, kartNo, bolum, ogrenciNo);
 
       setBasarili(true);
-      setIsım("");
-      setBolum("");
-      setOgrenciNo("");
-      setKartSifre("");
-      setKartNo("");
-      setSelectedRole("");
+      inputSifirla();
     } catch (error) {
       setBasarisiz(true);
     }
+  };
+
+  const inputSifirla = () => {
+    setIsım("");
+    setBolum("");
+    setOgrenciNo("");
+    setKartSifre("");
+    setKartNo("");
+    setSeriNo("");
+    setSelectedRole("");
   };
 
   const generateCard = (isim, kartNo, bolum, ogrenciNo) => {
@@ -115,7 +125,7 @@ function App() {
         canvas.height = ogrenciImg.height;
         ctx.drawImage(ogrenciImg, 0, 0);
 
-        ctx.font = "30px Arial";
+        ctx.font = "bold 30px Arial";
         ctx.fillStyle = "black";
         ctx.fillText(`${isim}`, 310, 295);
         ctx.fillText(`${ogrenciNo}`, 310, 335);
@@ -124,7 +134,7 @@ function App() {
         downloadLink.href = canvas.toDataURL("image/png");
         downloadLink.download = isim + "ON.png";
         downloadLink.click();
-        kartArkaOlustur(isim, kartNo);
+        kartArkaOlustur(isim, kartNo, seriNo);
       };
     } else if (selectedRole == "Ogretmen") {
       ogretmenImg.onload = () => {
@@ -132,15 +142,15 @@ function App() {
         canvas.height = ogretmenImg.height;
         ctx.drawImage(ogretmenImg, 0, 0);
 
-        ctx.font = "30px Arial";
+        ctx.font = "bold 30px Arial";
         ctx.fillStyle = "black";
-        ctx.fillText(`${isim}`, 310, 295);
-        ctx.fillText(`${ogrenciNo}`, 310, 335);
+        ctx.fillText(`${isim}`, 310, 323);
+        ctx.fillText(`${ogrenciNo}`, 310, 366);
         const downloadLink = document.createElement("a");
         downloadLink.href = canvas.toDataURL("image/png");
         downloadLink.download = isim + "ON.png";
         downloadLink.click();
-        kartArkaOlustur(isim, kartNo);
+        kartArkaOlustur(isim, kartNo, seriNo);
       };
     } else if (selectedRole == "Gorevli") {
       gorevliImg.onload = () => {
@@ -148,15 +158,15 @@ function App() {
         canvas.height = gorevliImg.height;
         ctx.drawImage(gorevliImg, 0, 0);
 
-        ctx.font = "30px Arial";
+        ctx.font = "bold 30px Arial";
         ctx.fillStyle = "black";
-        ctx.fillText(`${isim}`, 310, 295);
-        ctx.fillText(`${ogrenciNo}`, 310, 335);
+        ctx.fillText(`${isim}`, 310, 323);
+        ctx.fillText(`${ogrenciNo}`, 310, 366);
         const downloadLink = document.createElement("a");
         downloadLink.href = canvas.toDataURL("image/png");
         downloadLink.download = isim + "ON.png";
         downloadLink.click();
-        kartArkaOlustur(isim, kartNo);
+        kartArkaOlustur(isim, kartNo, seriNo);
       };
     } else {
       yetkiliImg.onload = () => {
@@ -164,20 +174,20 @@ function App() {
         canvas.height = yetkiliImg.height;
         ctx.drawImage(yetkiliImg, 0, 0);
 
-        ctx.font = "30px Arial";
+        ctx.font = "bold 30px Arial";
         ctx.fillStyle = "black";
-        ctx.fillText(`${isim}`, 310, 295);
-        ctx.fillText(`${ogrenciNo}`, 310, 335);
+        ctx.fillText(`${isim}`, 310, 323);
+        ctx.fillText(`${ogrenciNo}`, 310, 366);
         const downloadLink = document.createElement("a");
         downloadLink.href = canvas.toDataURL("image/png");
         downloadLink.download = isim + "ON.png";
         downloadLink.click();
-        kartArkaOlustur(isim, kartNo);
+        kartArkaOlustur(isim, kartNo, seriNo);
       };
     }
   };
 
-  const kartArkaOlustur = async (gelenIsim, gelenNo) => {
+  const kartArkaOlustur = async (gelenIsim, gelenNo, gelenSNo) => {
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
 
@@ -197,6 +207,9 @@ function App() {
 
         gelenImage.onload = () => {
           ctx.drawImage(gelenImage, 460, 60, 450, 450);
+          ctx.font = "bold 18px Arial";
+          ctx.fillStyle = "black";
+          ctx.fillText(`BMTAL${gelenSNo}`, 800, 568);
 
           const indirL = document.createElement("a");
           indirL.href = canvas.toDataURL("image/png");
@@ -279,7 +292,6 @@ function App() {
           PANELE DÖN
         </Link>
       </div>
-
       {showAddModal && (
         <div className="fixed inset-0 flex items-center justify-center">
           <div className="bg-white border border-gray-300 p-8 rounded-lg shadow-md w-80 lg:w-5/12">
@@ -287,8 +299,11 @@ function App() {
               Kart Oluştur
             </h2>
             <form>
-              <p className="mb-3 text-gray-800 text-xl font-extrabold">
+              <p className="text-gray-800 text-xl font-extrabold">
                 Kart NO: {kartNo}
+              </p>
+              <p className="mb-5 text-gray-800 text-xl font-extrabold">
+                Seri NO: BMTAL{seriNo}
               </p>
               <div className="mb-3">
                 <label

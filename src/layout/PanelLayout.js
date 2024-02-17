@@ -1,12 +1,8 @@
-import { Navigate, Outlet } from "react-router-dom";
-import { getCookieValue } from "../services/cookieIslemler";
-import { sifreCoz } from "../services/sifreIslem";
+import { Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
-import gif from "../img/kurumsal.gif";
+import gif from "../img/cumhuriyet.gif";
 
 const PanelLay = () => {
-  const usbToken = getCookieValue("USBToken");
-
   const [yukleniyor, setYukleniyor] = useState(true);
 
   useEffect(() => {
@@ -17,16 +13,12 @@ const PanelLay = () => {
 
   if (yukleniyor) {
     return (
-      <div className="flex justify-center mt-40">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-black">
         <img src={gif} />;
       </div>
     );
   }
 
-  if (usbToken) {
-    return <Outlet />;
-  }
-
-  return <Navigate to="/engel" replace />;
+  return <Outlet />;
 };
 export default PanelLay;

@@ -14,7 +14,7 @@ const QrOdeme = () => {
   const [olusturuldu, setOlusturuldu] = useState(false);
   const token = getCookieValue("token");
   const navigate = useNavigate();
-  const kulRef = collection(firestore, "kullanicilar");
+  const kulRef = collection(firestore, "kartlar");
   const anahtar = process.env.REACT_APP_ANAHTAR;
 
   useEffect(() => {

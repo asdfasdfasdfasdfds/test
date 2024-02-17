@@ -46,7 +46,7 @@ const USBToken = () => {
       const q = query(ref, where("vendor", "==", gelenKod));
       const getSnap = await getDocs(q);
 
-      if (!getSnap.empty) {
+      if (getSnap.docs && getSnap.docs.length > 0) {
         const data = getSnap.docs[0].data();
         setAd(data.ad);
         const sifrele = veriSifrele(data, key);

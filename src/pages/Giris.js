@@ -2,11 +2,15 @@ import React, { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import logo from "../img/battalkart.jpg";
 import { sifreCoz, veriSifrele } from "../services/sifreIslem";
-import { getCookieValue } from "../services/cookieIslemler";
+import { deleteCookie, getCookieValue } from "../services/cookieIslemler";
 import girisLogo from "../img/girislogo.png";
 import indir from "../files/program.zip";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { firestore } from "../firebase";
 
 const Login = () => {
+  const [seriNo, setSeriNo] = useState("");
+  const [kartSifre, setKartSifre] = useState("");
   const [hataliToken, setHataliToken] = useState(false);
   const [misafirData, setMisafirData] = useState({});
   const [modal, setModal] = useState(false);
@@ -23,10 +27,31 @@ const Login = () => {
 
   const tokenKontrol = (gelenToken) => {
     const cozulmus = sifreCoz(gelenToken, process.env.REACT_APP_ANAHTAR);
+    console.log(cozulmus);
     if (cozulmus.ad) {
       return;
     } else {
       setHataliToken(true);
+    }
+  };
+
+  const handleGiris = async () => {
+    try {
+      const ref = collection(firestore, "kartlar");
+      const q = query(
+        ref,
+        where("seriNo", "==", seriNo),
+        where("sifre", "==", kartSifre)
+      );
+      const getSnap = await getDocs(q);
+      if (!getSnap.empty) {
+        const data = getSnap.docs[0].data();
+        const sifrele = veriSifrele(data, process.env.REACT_APP_ANAHTAR);
+        document.cookie = `token=${sifrele}; path=/`;
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -48,28 +73,57 @@ const Login = () => {
   };
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white">
-      <img src={logo} className="mx-auto mb-6 w-64" />
-      <div className="bg-white md:border md:shadow-2xl font-bold text-center p-4 sm:p-8 rounded-lg w-80 sm:w-72 lg:w-6/12">
+      <img src={logo} className="mx-auto mb-6- w-64" />
+      <div className="bg-white md:border md:ring-2 md:ring-gray-50 md:shadow-2xl font-bold text-center p-4 sm:p-8 rounded-lg w-80 sm:w-72 lg:w-6/12">
         {hataliToken ? (
           <>
             <p className="text-xl">TOKEN GEÇERSİZ</p>
+            <button
+              className="p-2 w-80 rounded-md bg-gray-800 text-white mt-4"
+              onClick={() => {
+                deleteCookie("token");
+                window.location.reload();
+              }}
+            >
+              TEKRAR GİRİŞ YAP
+            </button>
           </>
         ) : (
           <div className="flex flex-col items-center justify-center">
             <p className="text-xl">GİRİŞ YAPILMAMIŞ</p>
-            <p className="mt-2">
+            <p className="mt-2 mb-5">
               AŞAĞIDAKİ SEÇENEKLERİ KULLANARAK GİRİŞ YAPINIZ.
             </p>
+            <input
+              type="text"
+              value={seriNo}
+              onChange={(e) => setSeriNo(e.target.value)}
+              placeholder="KART SERİ NO"
+              className="bg-gray-50 mb-1 text-center border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-80 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required
+            />
+            <input
+              type="password"
+              value={kartSifre}
+              onChange={(e) => setKartSifre(e.target.value)}
+              placeholder="KART ŞİFRESİ"
+              className="bg-gray-50 border text-center border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-80 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required
+            />
             <div className="flex flex-col">
               <button
                 type="submit"
                 className="w-80 mt-4 ring-2 bg-gray-800 font-extrabold text-white py-3 rounded-md hover:bg-gray-600 focus:outline-none focus:ring focus:ring-blue-200"
-                onClick={() => {
-                  window.location.href = "http://giris.bmtal.rf.gd/";
-                }}
+                onClick={handleGiris}
               >
                 GİRİŞ YAP
               </button>
+              <div className="inline-flex items-center justify-center w-full">
+                <hr className="w-64 h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
+                <span className="absolute px-3 font-medium text-gray-900 -translate-x-1/2 bg-white left-1/2 dark:text-white dark:bg-gray-900">
+                  veya
+                </span>
+              </div>{" "}
               <button
                 type="submit"
                 onClick={(e) => setModal(true)}

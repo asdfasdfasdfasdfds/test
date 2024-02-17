@@ -10,7 +10,6 @@ import { getCookieValue, deleteCookie } from "../services/cookieIslemler";
 import { sifreCoz } from "../services/sifreIslem";
 
 const ref = collection(firestore, "kartlar");
-const ref2 = collection(firestore, "kullanicilar");
 
 const Dashboard = () => {
   const [isim, setIsim] = useState("");
@@ -57,7 +56,7 @@ const Dashboard = () => {
 
   const getKartNo = async () => {
     try {
-      const q = query(ref2, where("no", "==", no));
+      const q = query(ref, where("no", "==", no));
       const kart = await getDocs(q);
       if (!kart.empty) {
         const kartData = kart.docs[0].data();
@@ -161,7 +160,7 @@ const Dashboard = () => {
                   <div>
                     <p className="text-gray-800 font-extrabold text-sm">İsim</p>
                     <p className="text-white text-2xl font-extrabold">
-                      {kartVeri.isim}
+                      {kartVeri.ad}
                     </p>
                   </div>
                 </div>
@@ -229,9 +228,6 @@ const Dashboard = () => {
             className="bg-red-500 w-80 lg:w-96 font-semibold text-center border mt-2 border-gray-400 text-black p-2 rounded-2xl relative"
             role="alert"
           >
-            <span>
-              Kartınızın güvenligi için <br />
-            </span>
             <strong className="font-bold">
               Kart Numaranızı <br />
             </strong>

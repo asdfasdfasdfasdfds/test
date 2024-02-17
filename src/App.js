@@ -5,7 +5,6 @@ import Main from "./layout/MainLayout";
 import PanelLayout from "./layout/PanelLayout";
 import Auth from "./layout/AuthLayout";
 import Yemekhane from "./layout/YemekhaneLayout";
-import Ekle from "./pages/KartEkle";
 import KartGuncelle from "./pages/KartGuncelle";
 import QrOdeme from "./pages/QrOdeme";
 import Transfer from "./pages/Transferİslem";
@@ -39,7 +38,6 @@ function App() {
             <Route path="/anasayfa" element={<Anasayfa />} />
             <Route path="/islemler" element={<Islemler />} />
             <Route path="/kart/guncelle" element={<KartGuncelle />} />
-            <Route path="/kart/ekle" element={<Ekle />} />
             <Route path="/transfer" element={<Transfer />} />
             <Route path="/transfer/et" element={<TransferEt />} />
             <Route path="/transfer/al" element={<TransferAl />} />

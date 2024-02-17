@@ -11,7 +11,7 @@ import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
 import logo from "../img/battalkart.jpg";
 
-const kullaniciRef = collection(firestore, "kullanicilar");
+const kullaniciRef = collection(firestore, "kartlar");
 const kartRef = collection(firestore, "kartlar");
 
 const KartGuncelle = () => {

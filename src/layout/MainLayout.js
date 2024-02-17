@@ -2,7 +2,7 @@ import { Navigate, Outlet } from "react-router-dom";
 import { getCookieValue } from "../services/cookieIslemler";
 import { sifreCoz } from "../services/sifreIslem";
 import { useEffect, useState } from "react";
-import gif from "../img/kurumsal.gif";
+import gif from "../img/cumhuriyet.gif";
 
 const MainLayout = () => {
   const token = getCookieValue("token");
@@ -12,12 +12,12 @@ const MainLayout = () => {
   useEffect(() => {
     setTimeout(() => {
       setYukleniyor(false);
-    }, 1600);
+    }, 1500);
   }, []);
 
   if (yukleniyor) {
     return (
-      <div className="flex justify-center mt-40">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-black">
         <img src={gif} />;
       </div>
     );

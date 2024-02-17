@@ -15,7 +15,7 @@ const Islemler = () => {
       try {
         setYukleniyor(true);
         const cozulenData = sifreCoz(token, process.env.REACT_APP_ANAHTAR);
-        const kullaniciRef = collection(firestore, "kullanicilar");
+        const kullaniciRef = collection(firestore, "kartlar");
         const queryKullanici = query(
           kullaniciRef,
           where("no", "==", cozulenData.no)
