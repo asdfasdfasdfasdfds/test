@@ -74,7 +74,7 @@ function App() {
     e.preventDefault();
     try {
       const docData = {
-        isim: isim,
+        ad: isim,
         kartNo: kartNo,
         sifre: kartSifre,
         aktifBakiye: 0,

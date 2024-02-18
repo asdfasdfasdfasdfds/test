@@ -92,7 +92,6 @@ const Islemler = () => {
           </li>
         ))}
       </ul>
-      <Footer />
     </div>
   );
 };

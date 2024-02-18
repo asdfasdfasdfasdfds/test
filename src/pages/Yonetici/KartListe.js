@@ -4,7 +4,6 @@ import ogrenci from "../../img/ogrenci.jpg";
 import ogretmen from "../../img/ogretmen.jpg";
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { firestore } from "../../firebase";
-import Footer from "../../components/Footer";
 
 const KartListe = () => {
   const [kartlar, setKartlar] = useState([]);
@@ -79,6 +78,22 @@ const KartListe = () => {
                       <p className="text-white text-2xl font-extrabold">
                         {kart.kartNo}
                       </p>
+                      <div className="mt-2">
+                        <p className="text-gray-800 font-extrabold text-sm">
+                          Seri NO
+                        </p>
+                        <p className="text-white text-2xl font-extrabold ">
+                          {kart.seriNo}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="mt-2">
+                      <p className="text-gray-800 font-extrabold text-sm">
+                        Şifre
+                      </p>
+                      <p className="text-white text-2xl font-extrabold ">
+                        {kart.sifre}
+                      </p>
                     </div>
                   </div>
                   <div className="flex justify-between mt-2">
@@ -96,12 +111,12 @@ const KartListe = () => {
                     >
                       Kartı Sil
                     </button>
-                    <div>
+                    <div className="flex flex-col">
                       <p className="text-gray-800 font-extrabold text-sm">
                         İsim
                       </p>
                       <p className="text-white text-2xl font-extrabold">
-                        {kart.isim}
+                        {kart.ad}
                       </p>
                     </div>
                   </div>
@@ -114,17 +129,9 @@ const KartListe = () => {
                 >
                   <div className="flex justify-between items-center">
                     {kart.yetki === "Öğrenci" ? (
-                      <img
-                        src="https://i.ibb.co/NnZXnDD/logo2.jpg"
-                        className="w-48 rounded-md"
-                        alt="Öğrenci Kartı"
-                      />
+                      <img src={ogrenci} className="w-44 rounded-md" />
                     ) : (
-                      <img
-                        src="https://i.ibb.co/GV58M4M/logo3.jpg"
-                        className="w-52 rounded-md"
-                        alt="Yetkili Kartı"
-                      />
+                      <img src={ogretmen} className="w-52 rounded-md" />
                     )}
                   </div>
                   <div className="flex justify-between">
@@ -134,6 +141,22 @@ const KartListe = () => {
                       </p>
                       <p className="text-white text-2xl font-extrabold">
                         {kart.kartNo}
+                      </p>
+                      <div className="mt-2">
+                        <p className="text-gray-800 font-extrabold text-sm">
+                          Seri NO
+                        </p>
+                        <p className="text-white text-2xl font-extrabold ">
+                          {kart.seriNo}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="mt-2">
+                      <p className="text-gray-800 font-extrabold text-sm">
+                        Şifre
+                      </p>
+                      <p className="text-white text-2xl font-extrabold ">
+                        {kart.sifre}
                       </p>
                     </div>
                   </div>
@@ -147,17 +170,17 @@ const KartListe = () => {
                       </p>
                     </div>
                     <button
-                      className="lg:text-lg text-sm  lg:p-3 lg:w-48 bg-white rounded-md hover:bg-slate-300 text-red-500 font-extrabold cursor-pointer"
+                      className="text-lg p-3 w-48 bg-white rounded-md  text-red-500 font-extrabold cursor-pointer"
                       onClick={() => handleSil(kart.id)}
                     >
                       Kartı Sil
                     </button>
-                    <div>
+                    <div className="flex flex-col">
                       <p className="text-gray-800 font-extrabold text-sm">
                         İsim
                       </p>
                       <p className="text-white text-2xl font-extrabold">
-                        {kart.isim}
+                        {kart.ad}
                       </p>
                     </div>
                   </div>
@@ -165,7 +188,6 @@ const KartListe = () => {
               ))}
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

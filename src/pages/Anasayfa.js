@@ -8,6 +8,7 @@ import ogrenci from "../img/ogrenci.jpg";
 import ogretmen from "../img/ogretmen.jpg";
 import { getCookieValue, deleteCookie } from "../services/cookieIslemler";
 import { sifreCoz } from "../services/sifreIslem";
+import DuyuruModal from "../components/DuyuruModal";
 
 const ref = collection(firestore, "kartlar");
 
@@ -177,7 +178,7 @@ const Dashboard = () => {
       <img src={logo} className="mx-auto w-64 lg:w-96 md:mt-10 mt-0" />
       <div className="flex flex-col h-max p-4 rounded-md">
         <p className="text-center mb-4 text-2xl mt-1 font-extrabold text-gray-800">
-          Merhaba, {isim}
+          {isim}
         </p>
         <div className="flex flex-col lg:flex-row gap-2 justify-center">
           <Link
@@ -224,15 +225,12 @@ const Dashboard = () => {
         <div className="flex items-center justify-center mt-2"></div>
         <div className="flex flex-col items-center justify-center mt-2">
           {kartGetir()}
-          <div
-            className="bg-red-500 w-80 lg:w-96 font-semibold text-center border mt-2 border-gray-400 text-black p-2 rounded-2xl relative"
-            role="alert"
-          >
+          <p className="p-2 bg-red-100 rounded text-center mt-2 w-80 md:w-96 shadow-2xl">
             <strong className="font-bold">
               Kart Numaranızı <br />
             </strong>
             <span className="block sm:inline">kimseyle paylaşmayınız.</span>
-          </div>
+          </p>
         </div>
       </div>
       <Footer />
