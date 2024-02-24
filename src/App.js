@@ -27,6 +27,7 @@ import UcretIslem from "./pages/Yonetici/UcretIslem";
 import MenuEkle from "./pages/Yemekhane/MenuIslem";
 import MenuTakip from "./pages/Yemekhane/MenuTakip";
 import DuyuruIslem from "./pages/Yonetici/Duyuru";
+import YemekhaneSSO from "./pages/YemekhaneSSO";
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
               <Route path="/transfer/al" element={<TransferAl />} />
               <Route path="/qr/odeme" element={<QrOdeme />} />
               <Route path="/engel" element={<USBEngel />} />
+              <Route path="/yemekhane/sso" element={<YemekhaneSSO />} />
               <Route path="/" element={<PanelLayout />}>
                 <Route path="/panel" element={<DashboardAnasayfa />} />
                 <Route path="/kart/islemleri" element={<Kart />} />

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import logo from "../../img/battalkart.jpg";
 import { addDoc, collection } from "firebase/firestore";
-import { firestore } from "../../firebase";
+import { db, firestore } from "../../firebase";
 
 const Duyuru = () => {
   const [baslik, setBaslik] = useState("");
@@ -9,10 +9,16 @@ const Duyuru = () => {
   const [tarih, setTarih] = useState("");
 
   const handleOlustur = async (e) => {
-    e.preventDefault(); // Formun otomatik olarak submit olmasını engelle
+    e.preventDefault();
     try {
       const ref = collection(firestore, "duyurular");
+      const ref2 = collection(db, "duyurular");
       await addDoc(ref, {
+        baslik,
+        metin,
+        tarih,
+      });
+      await addDoc(ref2, {
         baslik,
         metin,
         tarih,
