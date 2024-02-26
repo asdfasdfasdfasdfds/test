@@ -8,7 +8,6 @@ import ogrenci from "../img/ogrenci.jpg";
 import ogretmen from "../img/ogretmen.jpg";
 import { getCookieValue, deleteCookie } from "../services/cookieIslemler";
 import { sifreCoz } from "../services/sifreIslem";
-import DuyuruModal from "../components/DuyuruModal";
 
 const ref = collection(firestore, "kartlar");
 
@@ -175,21 +174,27 @@ const Dashboard = () => {
 
   return (
     <div>
-      <img src={logo} className="mx-auto w-64 lg:w-96 md:mt-10 mt-0" />
-      <div className="flex flex-col h-max p-4 rounded-md">
-        <p className="text-center mb-4 text-2xl mt-1 font-extrabold text-gray-800">
+      <img src={logo} className="mx-auto w-48 lg:w-96 md:mt-10 mt-0" />
+      <div className="flex flex-col h-max p-2 rounded-md">
+        <p className="text-center mb-2 text-2xl mt-1 font-extrabold text-gray-800">
           {isim}
         </p>
-        <div className="flex flex-col lg:flex-row gap-2 justify-center">
+        <div className="flex flex-col lg:flex-row gap-1 justify-center">
           <Link
-            className="bg-gray-800 text-center hover:bg-gray-700 text-white font-bold py-3 px-12 rounded-2xl"
+            className="bg-gray-800 text-center hover:bg-gray-700 text-white font-bold py-2 md:py-4 px-12 rounded-2xl"
             to="/kart/guncelle"
           >
             Kart Güncelle
           </Link>
+          <Link
+            className="bg-gray-800 text-center hover:bg-gray-700 text-white font-bold py-2 md:py-4 px-12 rounded-2xl"
+            to="/bakiye"
+          >
+            Bakiye Yükle
+          </Link>
           {yetki == "Yetkili" && (
             <Link
-              className="bg-gray-800 text-center hover:bg-gray-700 text-white font-bold py-3 px-12 rounded-2xl"
+              className="bg-gray-800 text-center hover:bg-gray-700 text-white font-bold py-2 md:py-4 px-12 rounded-2xl"
               to="/panel"
             >
               Panel
@@ -197,37 +202,36 @@ const Dashboard = () => {
           )}
           {yetki == "Gorevli" && (
             <Link
-              className="bg-gray-800 text-center hover:bg-gray-700 text-white font-bold py-3 px-12 rounded-2xl"
+              className="bg-gray-800 text-center hover:bg-gray-700 text-white font-bold py-2 md:py-4 px-12 rounded-2xl"
               to="/ypanel"
             >
               Yemekhane Panel
             </Link>
           )}
           <Link
-            className="bg-gray-800 text-center hover:bg-gray-700 text-white font-bold py-3 px-12 rounded-2xl"
+            className="bg-gray-800 text-center hover:bg-gray-700 text-white font-bold py-2 md:py-4 px-12 rounded-2xl"
             to="/qr/odeme"
           >
             QR Kodum
           </Link>
           <Link
-            className="bg-gray-800 text-center hover:bg-gray-700 text-white font-bold py-3 px-12 rounded-2xl"
+            className="bg-gray-800 text-center hover:bg-gray-700 text-white font-bold py-2 md:py-4 px-12 rounded-2xl"
             to="/transfer"
           >
             Transfer İşlemleri
           </Link>
           <button
-            className="bg-red-500 text-center hover:bg-gray-700 text-white font-bold py-3 px-12 rounded-2xl"
+            className="bg-red-500 text-center hover:bg-gray-700 text-white font-bold py-2 md:py-4 px-12 rounded-2xl"
             onClick={cikisYap}
           >
             Çıkış Yap
           </button>
         </div>
-        <div className="flex items-center justify-center mt-2"></div>
-        <div className="flex flex-col items-center justify-center mt-2">
+        <div className="flex flex-col items-center justify-center">
           {kartGetir()}
-          <p className="p-2 bg-red-100 rounded text-center mt-2 w-80 md:w-96 shadow-2xl">
+          <p className="p-1 bg-red-100 rounded-xl border border-black text-center mt-1 w-80 md:w-96 shadow">
             <strong className="font-bold">
-              Kart Numaranızı <br />
+              Kart üzerindeki QR kodu <br />
             </strong>
             <span className="block sm:inline">kimseyle paylaşmayınız.</span>
           </p>

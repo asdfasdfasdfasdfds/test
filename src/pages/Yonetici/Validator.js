@@ -62,7 +62,7 @@ function Validator() {
         setYetki(yetki);
         const aktifBakiye = querySnapshot.docs[0].data().aktifBakiye;
 
-        const cekilecekMiktar = yetki === "Öğrenci" ? 15 : 25;
+        const cekilecekMiktar = yetki === "Öğrenci" ? 20 : 30;
 
         const islem = {
           islemTuru: `QR ile Ödeme`,

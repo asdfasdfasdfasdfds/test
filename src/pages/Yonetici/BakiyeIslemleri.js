@@ -74,17 +74,23 @@ function BakiyeIslemleri() {
 
   return (
     <div className="flex flex-col items-center justify-center ">
-      <img src={logo} className="w-96 mb-2 rounded-full mt-20" />
+      <img src={logo} className="w-80 mb-2 rounded-full mt-20" />
       <h1 className="text-4xl text-gray-800 font-extrabold mb-6">
         BAKİYE İŞLEMLERİ
       </h1>
       <div className="flex flex-col">
         <button
           onClick={openAddModal}
-          className="w-72 text-center font-extrabold mb-6 bg-gray-800 text-white py-3 rounded-xl mt-2 hover:bg-gray-600 focus:outline-none focus:ring focus:ring-blue-200"
+          className="w-72 text-center font-extrabold mb-3 bg-gray-800 text-white py-3 rounded-xl mt-2 hover:bg-gray-600 focus:outline-none focus:ring focus:ring-blue-200"
         >
           BAKİYE YÜKLE
         </button>
+        <Link
+          to="/bakiye/talepler"
+          className="w-72 text-center font-extrabold mb-3 bg-gray-800 text-white py-3 rounded-xl mt-2 hover:bg-gray-600 focus:outline-none focus:ring focus:ring-blue-200"
+        >
+          TALEPLER
+        </Link>
         <Link
           to="/panel"
           className="w-72 text-center font-extrabold bg-gray-800 text-white py-3 rounded-xl mt-2 hover:bg-gray-600 focus:outline-none focus:ring focus:ring-blue-200"
@@ -115,7 +121,7 @@ function BakiyeIslemleri() {
                     setKartNo(e.currentTarget.value);
                   }}
                   className="w-full px-4 py-4 bg-gray-100 rounded-md focus:ring focus:ring-blue-200"
-                  placeholder="Kartın Üzerindeki Numara"
+                  placeholder="Kart Numarası"
                 />
               </div>
               <div className="mb-3">

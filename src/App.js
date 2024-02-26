@@ -7,6 +7,7 @@ import PanelLayout from "./layout/PanelLayout";
 import Auth from "./layout/AuthLayout";
 import Yemekhane from "./layout/YemekhaneLayout";
 import KartGuncelle from "./pages/KartGuncelle";
+import BakiyeYukle from "./pages/BakiyeYukle";
 import QrOdeme from "./pages/QrOdeme";
 import Transfer from "./pages/Transferİslem";
 import TransferEt from "./pages/TransferEt";
@@ -28,6 +29,7 @@ import MenuEkle from "./pages/Yemekhane/MenuIslem";
 import MenuTakip from "./pages/Yemekhane/MenuTakip";
 import DuyuruIslem from "./pages/Yonetici/Duyuru";
 import YemekhaneSSO from "./pages/YemekhaneSSO";
+import BakiyeTalepler from "./pages/Yonetici/BakiyeTalepler";
 
 function App() {
   return (
@@ -42,6 +44,7 @@ function App() {
               <Route path="/anasayfa" element={<Anasayfa />} />
               <Route path="/islemler" element={<Islemler />} />
               <Route path="/kart/guncelle" element={<KartGuncelle />} />
+              <Route path="/bakiye" element={<BakiyeYukle />} />
               <Route path="/transfer" element={<Transfer />} />
               <Route path="/transfer/et" element={<TransferEt />} />
               <Route path="/transfer/al" element={<TransferAl />} />
@@ -53,6 +56,7 @@ function App() {
                 <Route path="/kart/islemleri" element={<Kart />} />
                 <Route path="/kart/liste" element={<KartListe />} />
                 <Route path="/bakiye/islemleri" element={<Bakiye />} />
+                <Route path="/bakiye/talepler" element={<BakiyeTalepler />} />
                 <Route path="/duyuru/islemleri" element={<DuyuruIslem />} />
                 <Route path="/validator" element={<Validator />} />
                 <Route path="/rapor" element={<Rapor />} />
