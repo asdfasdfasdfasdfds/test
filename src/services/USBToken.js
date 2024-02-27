@@ -15,29 +15,25 @@ const USBToken = () => {
   const key = process.env.REACT_APP_USB_ANAHTAR;
 
   useEffect(() => {
-    handleSifreCoz();
+    handleSifreCoz(token);
   }, []);
 
-  const handleSifreCoz = async () => {
-    if (token) {
-      const sifreli_sayi_bytes = new Uint8Array(
-        [...atob(token)].map((char) => char.charCodeAt(0))
-      );
-      const anahtar_bytes = new Uint8Array(
-        [...key].map((char) => char.charCodeAt(0))
-      );
+  const handleSifreCoz = async (gelenToken) => {
+    const sifreli_sayi_bytes = new Uint8Array(
+      [...atob(gelenToken)].map((char) => char.charCodeAt(0))
+    );
+    const anahtar_bytes = new Uint8Array(
+      [...key].map((char) => char.charCodeAt(0))
+    );
 
-      const cozulmus_sayi_bytes = new Uint8Array(
-        sifreli_sayi_bytes.map(
-          (b1, i) => b1 ^ anahtar_bytes[i % anahtar_bytes.length]
-        )
-      );
-      const cozulmus_sayi = String.fromCharCode(...cozulmus_sayi_bytes);
-      setKod(cozulmus_sayi);
-      handleGiris(cozulmus_sayi);
-    } else {
-      setGecersiz(true);
-    }
+    const cozulmus_sayi_bytes = new Uint8Array(
+      sifreli_sayi_bytes.map(
+        (b1, i) => b1 ^ anahtar_bytes[i % anahtar_bytes.length]
+      )
+    );
+    const cozulmus_sayi = String.fromCharCode(...cozulmus_sayi_bytes);
+    setKod(cozulmus_sayi);
+    await handleGiris(cozulmus_sayi);
   };
 
   const handleGiris = async (gelenKod) => {
@@ -46,12 +42,11 @@ const USBToken = () => {
       const q = query(ref, where("vendor", "==", gelenKod));
       const getSnap = await getDocs(q);
 
-      if (getSnap.docs && getSnap.docs.length > 0) {
+      if (!getSnap.empty) {
         const data = getSnap.docs[0].data();
         setAd(data.ad);
-        const sifrele = veriSifrele(data, key);
+        const sifrele = veriSifrele(data);
         document.cookie = `token=${sifrele}; path=/`;
-        document.cookie = `USBToken=true; path=/`;
         setIslemGerceklesiyor(false);
       } else {
         setGecersiz(true);

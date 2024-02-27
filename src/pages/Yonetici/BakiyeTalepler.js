@@ -8,9 +8,11 @@ import {
   doc,
   getDoc,
   updateDoc,
+  arrayUnion,
 } from "firebase/firestore";
 import { firestore } from "../../firebase";
 import logo from "../../img/battalkart.jpg";
+import { generateRandomCode } from "../../utils/kodOlustur";
 
 const BakiyeTalepler = () => {
   const [talepler, setTalepler] = useState([]);
@@ -72,7 +74,16 @@ const BakiyeTalepler = () => {
       const yeniRef = doc(firestore, "kartlar", docId);
       const aktifBakiye = donenSnap.docs[0].data().aktifBakiye;
       const yeniBakiye = aktifBakiye + parseInt(miktar);
-      await updateDoc(yeniRef, { aktifBakiye: yeniBakiye });
+      const islem = {
+        islemTuru: `Bakiye Yüklendi`,
+        miktar: miktar,
+        tarih: new Date().toLocaleString("tr-TR"),
+        islemKodu: generateRandomCode(9),
+      };
+      await updateDoc(yeniRef, {
+        aktifBakiye: yeniBakiye,
+        islemler: arrayUnion(islem),
+      });
       handleSil(gelenId);
       setSuccessMessage("KART BAKİYESİ GÜNCELLENDİ.");
       setTimeout(() => {
