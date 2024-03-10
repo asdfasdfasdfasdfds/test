@@ -37,11 +37,15 @@ function App() {
   const anahtar = process.env.REACT_APP_ANAHTAR;
 
   useEffect(() => {
+    handleNoOlustur();
+  }, [showAddModal]);
+
+  const handleNoOlustur = () => {
     const kartNo = kartNoOlustur(6);
     const seriNo = kartNoOlustur(9);
     setKartNo(kartNo);
     setSeriNo(seriNo);
-  }, [showAddModal]);
+  };
 
   const handleChange = (e) => {
     const change = e.target.value.toUpperCase();
@@ -102,6 +106,8 @@ function App() {
     setKartNo("");
     setSeriNo("");
     setSelectedRole("");
+    setSeriNo("");
+    handleNoOlustur();
   };
 
   const generateCard = (isim, kartNo, bolum, ogrenciNo) => {

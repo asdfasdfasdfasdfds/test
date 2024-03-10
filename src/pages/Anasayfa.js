@@ -182,12 +182,6 @@ const Dashboard = () => {
         <div className="flex flex-col lg:flex-row gap-1 justify-center">
           <Link
             className="bg-gray-800 text-center hover:bg-gray-700 text-white font-bold py-2 md:py-4 px-12 rounded-2xl"
-            to="/kart/guncelle"
-          >
-            Kart Güncelle
-          </Link>
-          <Link
-            className="bg-gray-800 text-center hover:bg-gray-700 text-white font-bold py-2 md:py-4 px-12 rounded-2xl"
             to="/bakiye"
           >
             Bakiye Yükle
