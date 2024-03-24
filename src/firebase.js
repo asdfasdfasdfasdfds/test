@@ -11,12 +11,12 @@ const firebaseConfig = {
 };
 
 const firebaseConfig2 = {
-  apiKey: "AIzaSyBxe5kmXD8ClLs8TOF84h6e0BMNZVCs0u0",
-  authDomain: "battalyemekhane.firebaseapp.com",
-  projectId: "battalyemekhane",
-  storageBucket: "battalyemekhane.appspot.com",
-  messagingSenderId: "391702591939",
-  appId: "1:391702591939:web:8dcc6498506d02a054a576",
+  apiKey: process.env.REACT_APP_API2,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN2,
+  projectId: process.env.REACT_APP_PROJECT_ID2,
+  storageBucket: process.env.REACT_APP_STORAGE2,
+  messagingSenderId: process.env.REACT_APP_SENDER2,
+  appId: process.env.REACT_APP_ID2,
 };
 
 const app = initializeApp(firebaseConfig);
