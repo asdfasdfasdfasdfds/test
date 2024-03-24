@@ -7,4 +7,4 @@
 <h2>PROJE RESİMLERİ</h2>
 
 <h4>GİRİŞ SAYFASI</h4>
-<img src="./project_images/giris.png">
+<img src="./project-images/giris.png">
