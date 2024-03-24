@@ -1,1 +1,3 @@
-![Logo](./src/img/battalkart.jpg)
+<p align="center">
+  <img src="./src/img/battalkart.jpg" alt="Logo">
+</p>
